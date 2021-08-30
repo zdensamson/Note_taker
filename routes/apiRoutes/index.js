@@ -34,4 +34,21 @@ router.post('/notes', (req, res) => {
     res.json(notes);
 });
 
+// DELETEs a selected id
+router.delete('/notes/:id', (req,res) => {
+   const noteId = req.params.id;
+   const newNotes = deleteSelectedNote(noteId, notes);
+   res.json(newNotes);
+})
+
+function deleteSelectedNote(id, notes) {
+    const filteredNotes = notes.filter(note => note.id != id);
+    fs.writeFileSync(
+        path.join(__dirname, '../../db/db.json'),
+        JSON.stringify(filteredNotes, null, 2)
+    );
+    return filteredNotes;
+
+};
+
 module.exports = router;

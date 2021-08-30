@@ -25,6 +25,7 @@ const hide = (elem) => {
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
+//STEP 4 DELETE
 const getNotes = () =>
   fetch('/api/notes', {
     method: 'GET',
@@ -42,6 +43,7 @@ const saveNote = (note) =>
     body: JSON.stringify(note),
   });
 
+  //STEP 2 DELETE
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
     method: 'DELETE',
@@ -89,6 +91,7 @@ const handleNoteDelete = (e) => {
     activeNote = {};
   }
 
+  //STEP 1 DELETE
   deleteNote(noteId).then(() => {
     getAndRenderNotes();
     renderActiveNote();
@@ -116,6 +119,7 @@ const handleRenderSaveBtn = () => {
   }
 };
 
+//STEP 5 DELETE
 // Render the list of note titles
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
@@ -171,6 +175,7 @@ const renderNoteList = async (notes) => {
 };
 
 // Gets notes from the db and renders them to the sidebar
+//STEP 3 DELETE
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
 
 if (window.location.pathname === '/notes') {
